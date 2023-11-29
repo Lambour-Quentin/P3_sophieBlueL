@@ -186,3 +186,40 @@ footer nav ul {
 	margin: 2em
 }
 
+.filtre ul{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	gap: 25px;
+}
+
+.filtre ul li{
+	border: solid 1px #1D6154;
+	border-radius: 25px;
+	font-size: 20px;
+	color: #1D6154;
+	padding: 10px;
+	cursor: pointer;
+
+}
+
+.filtre ul li:hover{
+	border: solid 1px ;
+	border-radius: 25px;
+	font-size: 20px;
+	color: #fff;
+	background-color: #B3B3B3; 
+	padding: 10px;
+	cursor: pointer;
+}
+
+.filtre ul li:active{
+	border: solid 1px ;
+	border-radius: 25px;
+	font-size: 20px;
+	color: #fff;
+	background-color: #1D6154; 
+	padding: 10px;
+	cursor: pointer;
+}
