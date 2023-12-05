@@ -186,7 +186,7 @@ footer nav ul {
 	margin: 2em
 }
 
-.filtre ul{
+/*.filtre ul{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -222,4 +222,39 @@ footer nav ul {
 	background-color: #1D6154; 
 	padding: 10px;
 	cursor: pointer;
+}*/
+.filtre{
+	display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.btn_filter {
+	padding: 4px 15px 4px 15px;
+	border: 1px solid #1d6154;
+	border-radius: 60px;
+	font-family: "Syne";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 19px;
+	color: rgba(29, 97, 84, 1);
+	background-color: white;
+  }
+
+
+  .btn_filter:hover {
+	background-color: rgba(29, 97, 84, 1);
+	color: #ffffff;
+  }
+  
+  .is-active {
+	background-color: rgba(29, 97, 84, 1);
+	color: #ffffff;
+  }
+
+  #erreur-message{
+	color: red;
+	font-size: 25px;
 }
