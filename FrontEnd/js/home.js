@@ -5,6 +5,7 @@ const gallery = document.querySelector(".gallery");
 async function main() {
  await displayWorks();
  await displayCategories();
+ admin();
 }
 main();
 
@@ -59,9 +60,9 @@ async function displayCategories() {
       }
     })
     .then((categories) => {
-      createCategorie({ name: 'Tous'}, true);
+      displayCategory({ name: 'Tous'}, true);
       categories.forEach((categorie) => {
-        createCategorie(categorie);        
+        displayCategory(categorie);        
       });
     })
     .catch((error) => {
@@ -69,7 +70,7 @@ async function displayCategories() {
     });
 }
 
-function createCategorie(categorie, isActive) {
+function displayCategory(categorie, isActive) {
   const filters = document.querySelector(".filtre");
   const buttonFilter = document.createElement("button");
 
@@ -94,38 +95,28 @@ function createCategorie(categorie, isActive) {
   filters.appendChild(buttonFilter);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const token = localStorage.getItem("token");
+function admin(){
+  const token = sessionStorage.getItem("token");
   const loginItem = document.getElementById("login");
   const logoutItem = document.getElementById("logout");
   const logoutLink = document.querySelector("a");
-  const filtreItem = document.getElementById("filtre");
-  const modalItem = document.querySelector('.js-modal');
-  const editLink = document.querySelector('.edit0');
+  const adminModalButton = document.getElementById('admin-modal-button');
 
   if (token) {
       loginItem.style.display = 'none';
       logoutItem.style.display = 'flex';
       logoutLink.style.color = "#000";
       logoutLink.style.textDecoration="none";
-      filtreItem.style.display = 'none';
-      modalItem.style.display = 'flex';
-      editLink.style.display = 'flex';
+      adminModalButton.style.display = 'flex';
   } else {
       loginItem.style.display = 'flex';
       logoutItem.style.display = 'none';
-      filtreItem.style.display = 'flex';
-      filtreItem.style.justifyContent = 'center';
-      modalItem.style.display = 'none';
-      editLink.style.display = 'none';
+      adminModalButton.style.display = 'none';
   }
-});
-
+  document.getElementById("logout").addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "./index.html";
+  });
+}
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/ 
-
-document.getElementById("logout").addEventListener("click", () => {
-  localStorage.removeItem("token");
-  window.location.href = "./index.html";
-});
-
 

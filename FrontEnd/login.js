@@ -1,5 +1,3 @@
-/*-------------------------------------------------------------------------------------------------------------------------------------------*/ 
-
 /*Gère la connexion, envoie les données du login, et redirige vers les projets ou affiche une erreur. */
 
 document.getElementById("form-login").addEventListener("submit", function (event) {
@@ -33,14 +31,13 @@ document.getElementById("form-login").addEventListener("submit", function (event
     })
     .then(login => {
         if (login.token) {
-            localStorage.setItem("token", login.token); 
+            sessionStorage.setItem("token", login.token); 
             
             window.location.href = "./index.html";
         } else {
             document.getElementById("erreur-message").innerText = "Problème de récupération du token.";
         }
     })
-
     .catch(error => {
         console.error(error);
         document.getElementById("erreur-message").innerText = error.message;

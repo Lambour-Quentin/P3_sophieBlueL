@@ -8,10 +8,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 	<link rel="stylesheet" href="./assets/style.css">
 	
 	<script src="./js/home.js" defer></script>
-
+	<script src="./js/modal.js" defer></script>
 </head>
 <body>
 <header>
@@ -40,7 +41,50 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="title_header">
+			<h2>Mes Projets</h2>
+			<a id="admin-modal-button" class="admin_modal_button" style="display: none;">
+				<i class="fa-regular fa-pen-to-square"></i><span style="padding-left: 6px;">Modifier</span>
+			</a>
+		</div>
+		<div id="modal-admin" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
+				aria-describedby="titlemodal" style="display: none;">
+				<div id="js-modal-stop" class="modal-wrapper js-modal-stop">
+					<div id="gallery-modal-container">
+						<button id="js-modal-close" class="js-modal-close modal-close-button"><i class="fa-solid fa-x"></i></button>
+						<h3 id="titlemodal">Galerie photo</h3>
+						<div id="modal-content" class="modal-content">
+							<div class="galleryModal"></div>
+						</div>
+						<div class="barre"></div>
+						<div class="modal-buttons">
+							<button id="modal-add-picture" class="modal-add-picture">Ajouter une photo</a></button>
+						</div>
+					</div>
+					<div id="add-picture-modal" aria-hidden="true" style="display: none;">
+						<div class="button-header">
+							<button id="back-to-gallery"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
+							<button id="close-modal"><i class="fa-solid fa-x" style="color: #000000;"></i></button>
+						</div>
+						<h3 id="titlemodal2">Ajout photo </h3>
+						<form id="form-modal2" action="#" method="post">
+							<div id="add-pic">
+								<i class="fa-regular fa-image"></i>
+								<label for="image" class="file-upload"> + Ajouter photo  </label>
+								<input type="file" name="image" id="image" accept=".jpeg, .jpg, .png"  style="display: none;">
+								<p> jpg, png : 4mo max </p>
+								<div id="picture-preview"></div>
+							</div>
+							<label for="title">Titre</label>
+							<input type="text" name="title" id="titre" >
+							<label for="category">Catégorie</label>
+							<select name="category" id="category" ></select>
+							<div class="barre"></div>
+							<input id="valider" type="submit" value="Valider" disabled>
+						</form>
+					</div>
+				</div>
+			</div>
 		<div id="filtre" class="filtre"></div>
 		<div class="gallery"></div>
 		</div>
