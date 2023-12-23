@@ -189,7 +189,9 @@ async function pictureDelete(event) {
         } catch (error) {
             console.log("Suppression réussie, aucune donnée retournée");
         }
-        figureElement.remove(); // Supprime l'élément de l'UI
+        figureElement.remove();
+        displayItemsModal();
+        displayWorks();
     })
     .catch(error => {
         console.error("Erreur lors de la suppression", error);
@@ -227,13 +229,31 @@ async function sendFormData(imgFile, titre, categorieId, event) {
         }
     })
     .then(data => {
-        alert('Projet ajouté avec succès.');
         closeModal(event);
-        // Refresh home project's list
+        displayItemsModal();
+        displayWorks();
     })
     .catch(error => {
         alert('Erreur : ' + error.message);
     });
+}
+
+/* Initialise et gère les modals pour la navigation et la fermeture */
+
+function deleteUploadPicture() {
+    const previewContainer = document.getElementById('picture-preview');
+    const tmpImage = document.getElementById('tmpImage');
+    const imgInput = document.getElementById('image');
+
+    if (tmpImage) {
+        previewContainer.removeChild(tmpImage);    
+    }
+    if (imgInput) {
+        imgInput.value = null;
+    }
+    previewContainer.innerHTML = '';
+    document.getElementById('delete-picture-preview').style.display = 'none';
+    updateButtonState();
 }
 
 /* Initialise et gère les modals pour la navigation et la fermeture */
@@ -298,21 +318,26 @@ function init() {    // Modal parent
     
             reader.onload = function(e) {
                 let previewContainer = document.getElementById('picture-preview');
+                const deletePicturePreview = document.getElementById('delete-picture-preview');
                 previewContainer.innerHTML = '';
     
                 let img = document.createElement('img');
+
+                img.id = 'tmpImage';
                 img.src = e.target.result;
                 img.style.maxWidth = '200px';
+                img.style.objectFit = 'cover';
+                img.style.height = '100%';
+
                 previewContainer.appendChild(img);
-    
-                /*Masquer l'icône, le label spécifique pour ajouter une photo et paragraphe*/
-                document.querySelector('#add-pic i').style.display = 'none';
-                document.querySelector('#add-pic .file-upload').style.display = 'none';
-                document.querySelector('#add-pic p').style.display = 'none';
+                deletePicturePreview.style.display = 'block';
             };
             reader.readAsDataURL(input.files[0]);
         }
     });
+
+    const deletePicturePreview = document.getElementById('delete-picture-preview');
+    deletePicturePreview.addEventListener('click', deleteUploadPicture);
 
     const adminButton = document.getElementById('admin-modal-button');
     adminButton.addEventListener('click', openModal);

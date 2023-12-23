@@ -15,7 +15,10 @@
 	<script src="./js/modal.js" defer></script>
 </head>
 <body>
-<header>
+<div id="edition-bar" class="edition-bar" style="display: none;">
+	<i class="fa-regular fa-pen-to-square"></i><span style="padding-left: 8px;">Mode édition</span>
+</div>
+<header id="main-header">
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
@@ -58,29 +61,34 @@
 						</div>
 						<div class="barre"></div>
 						<div class="modal-buttons">
-							<button id="modal-add-picture" class="modal-add-picture">Ajouter une photo</a></button>
+							<button id="modal-add-picture" class="modal-add-picture">Ajouter une photo</button>
 						</div>
 					</div>
 					<div id="add-picture-modal" aria-hidden="true" style="display: none;">
 						<div class="button-header">
-							<button id="back-to-gallery"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
-							<button id="close-modal"><i class="fa-solid fa-x" style="color: #000000;"></i></button>
+							<button id="back-to-gallery" class="js-modal-back"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
+							<button id="close-modal" class="js-modal-close modal-close-button"><i class="fa-solid fa-x"></i></button>
 						</div>
-						<h3 id="titlemodal2">Ajout photo </h3>
-						<form id="form-modal2" action="#" method="post">
-							<div id="add-pic">
-								<i class="fa-regular fa-image"></i>
-								<label for="image" class="file-upload"> + Ajouter photo  </label>
-								<input type="file" name="image" id="image" accept=".jpeg, .jpg, .png"  style="display: none;">
-								<p> jpg, png : 4mo max </p>
-								<div id="picture-preview"></div>
+						<h3 id="titlemodal">Ajout photo </h3>
+						<form id="form-modal2" class="form-add-picture" action="#" method="post">
+							<div style="position: relative;">
+								<div id="add-pic" class="container-add-picture">
+									<i class="fa-regular fa-image" style="font-size: 64px; color: #B9C5CC;"></i>
+									<label for="image" class="container-add-picture-button">+ Ajouter photo</label>
+									<input type="file" name="image" id="image" accept=".jpeg, .jpg, .png"  style="display: none;">
+									<p class="container-add-picture-info">
+										jpg, png : 4mo max
+									</p>
+								</div>
+								<div id="picture-preview" class="picture-preview"></div>
+								<div id="delete-picture-preview" class="delete-picture-preview" style="display: none;"><i class="fa-solid fa-trash"></i></div>
 							</div>
 							<label for="title">Titre</label>
 							<input type="text" name="title" id="titre" >
 							<label for="category">Catégorie</label>
 							<select name="category" id="category" ></select>
-							<div class="barre"></div>
-							<input id="valider" type="submit" value="Valider" disabled>
+							<div class="barre" style="margin-top: 40px;"></div>
+							<input id="valider" class="modal-add-picture" type="submit" value="Valider" disabled>
 						</form>
 					</div>
 				</div>

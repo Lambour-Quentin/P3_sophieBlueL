@@ -32,8 +32,8 @@ document.getElementById("form-login").addEventListener("submit", function (event
     .then(login => {
         if (login.token) {
             sessionStorage.setItem("token", login.token); 
-            
             window.location.href = "./index.html";
+            displayWorks(categorieId);
         } else {
             document.getElementById("erreur-message").innerText = "Problème de récupération du token.";
         }

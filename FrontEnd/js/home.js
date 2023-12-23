@@ -5,7 +5,7 @@ const gallery = document.querySelector(".gallery");
 async function main() {
  await displayWorks();
  await displayCategories();
- admin();
+ initAdmin();
 }
 main();
 
@@ -47,7 +47,6 @@ function createWork(item) {
   figure.appendChild(figcaption);
 
   gallery.appendChild(figure);
-
 }
 
 async function displayCategories() {
@@ -95,26 +94,35 @@ function displayCategory(categorie, isActive) {
   filters.appendChild(buttonFilter);
 }
 
-function admin(){
+function initAdmin(){
   const token = sessionStorage.getItem("token");
   const loginItem = document.getElementById("login");
   const logoutItem = document.getElementById("logout");
   const logoutLink = document.querySelector("a");
   const adminModalButton = document.getElementById('admin-modal-button');
+  const editionBar = document.getElementById('edition-bar');
+  const mainHeader = document.getElementById('main-header');
+  const filters = document.querySelector(".filtre");
 
   if (token) {
+      mainHeader.style.marginTop = '100px';
+      editionBar.style.display = 'flex';
+      filters.style.visibility = 'hidden';
       loginItem.style.display = 'none';
       logoutItem.style.display = 'flex';
       logoutLink.style.color = "#000";
       logoutLink.style.textDecoration="none";
       adminModalButton.style.display = 'flex';
   } else {
+      mainHeader.style.marginTop = inherit;
+      editionBar.style.display = 'none';
+      filters.style.visibility = 'visible';
       loginItem.style.display = 'flex';
       logoutItem.style.display = 'none';
       adminModalButton.style.display = 'none';
   }
   document.getElementById("logout").addEventListener("click", () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     window.location.href = "./index.html";
   });
 }
